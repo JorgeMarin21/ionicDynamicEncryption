@@ -1,11 +1,19 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      About
+      Consultar BD
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
+  <div *ngFor="let item of logs">
+    <ion-grid fixed *ngIf="logs.length > 0">
+      <ion-row>
+        <ion-col >
+          <h5>{{item.key}}: {{item.value}}</h5>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
