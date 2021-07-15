@@ -17,6 +17,9 @@ export class HomePage {
 
   }
 
+  async ionViewWillEnter() {
+    await this.localDataService.checkDeviceId();
+  }
   async onSubmitTemplate() {
     if( this.log.key === '' || this.log.value === '') {
       this.showAlert('Error', 'Hay campos vacíos');

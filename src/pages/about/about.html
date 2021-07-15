@@ -7,13 +7,34 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col col-3><strong>Llave</strong></ion-col>
+      <ion-col col-7><strong>Valor</strong></ion-col>
+      <ion-col col-2><strong>Ver</strong></ion-col>
+    </ion-row>
+  </ion-grid>
   <div *ngFor="let item of logs">
     <ion-grid fixed *ngIf="logs.length > 0">
       <ion-row>
-        <ion-col >
-          <h5>{{item.key}}: {{item.value}}</h5>
+        <ion-col col-3>
+          <p>{{item.key}}</p>
+        </ion-col>
+        <ion-col col-7>
+          <p>{{item.value}}:</p>
+        </ion-col>
+        <ion-col col-2>
+          <button ion-button color='primary' (click)="seeData(item)">
+            <ion-icon name="eye"></ion-icon>
+          </button>
         </ion-col>
       </ion-row>
     </ion-grid>
+    <hr>
+  </div>
+  <div>
+    <button ion-button (click)="removeData()" color='danger' block>
+      Borrar storage
+    </button>
   </div>
 </ion-content>

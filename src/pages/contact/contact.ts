@@ -1,23 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { UniqueDeviceID } from '@ionic-native/unique-device-id';
+import { LocalDataProvider } from '../../providers/local-data/local-data';
 
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
 })
-export class ContactPage implements OnInit {
+export class ContactPage {
   uid = '';
 
-  constructor(public navCtrl: NavController, private uniqueDeviceID: UniqueDeviceID) {
-
+  constructor(public navCtrl: NavController, public localDataService: LocalDataProvider) {
   }
 
-  async ngOnInit() {
-    this.uniqueDeviceID.get().then((uuid: any) => {
-      this.uid = uuid;
-    })
-    .catch((error: any) => console.log(error));
+  async ionViewWillEnter() {
+    this.uid = await this.localDataService.checkDeviceId();
   }
 
 }
